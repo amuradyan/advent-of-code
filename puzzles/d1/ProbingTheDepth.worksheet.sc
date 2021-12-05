@@ -1,5 +1,5 @@
 scala.io.Source
-   .fromFile("/home/spectrum/playgraund/advent-of-code/puzzles/d1/data")
+   .fromFile("/home/spectrum/playgraund/advent-of-code/puzzles/d1/input")
    .getLines
    .map(_.toInt)
    // If you comment the two lines below, you'll get the solution to part 1 of this puzzle
