@@ -1,7 +1,9 @@
-// Part 1
+val projectPath = new java.io.File(".").getCanonicalPath
+
+// Part 1 : Power Consumption
 
 scala.io.Source
-   .fromFile("/home/spectrum/playgraund/advent-of-code/puzzles/d3/input")
+   .fromFile(projectPath + "/puzzles/d3/input")
    .getLines
    .toList
    .map(_.getBytes.toList.map {

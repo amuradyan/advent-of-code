@@ -1,7 +1,9 @@
+val projectPath = new java.io.File(".").getCanonicalPath
+
 // Part 1
 
 val (depth, worngDistance) = scala.io.Source
-   .fromFile("/home/spectrum/playgraund/advent-of-code/puzzles/d2/input")
+   .fromFile(projectPath + "/puzzles/d2/input")
    .getLines
    .toList
    .map { case s"$direction $magnitude" => (direction, magnitude.toInt) }
@@ -23,7 +25,7 @@ depth * worngDistance
 case class Telemetry(aim: Int, depth: Int, distance: Int)
 
 val telemetry = scala.io.Source
-   .fromFile("/home/spectrum/playgraund/advent-of-code/puzzles/d2/input")
+   .fromFile(projectPath + "/puzzles/d2/input")
    .getLines
    .toList
    .map { case s"$direction $magnitude" => (direction, magnitude.toInt) }
