@@ -1,17 +1,3 @@
-// sealed trait Command
-
-// object Command {
-//    def from(command: String) = command match {
-//       case "forward" => Forward()
-//       case "up"      => Up()
-//       case "down"    => Down()
-//    }
-// }
-
-// sealed class Forward extends Command
-// sealed class Up extends Command
-// sealed class Down extends Command
-
 // Part 1
 
 val (depth, worngDistance) = scala.io.Source
@@ -19,7 +5,6 @@ val (depth, worngDistance) = scala.io.Source
    .getLines
    .toList
    .map { case s"$direction $magnitude" => (direction, magnitude.toInt) }
-   .toList
    .foldLeft((0, 0)) { (totalDepthAndDistance, command) =>
       command match {
          case ("forward", value) =>
