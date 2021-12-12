@@ -73,14 +73,8 @@ val (winningBoards, firstLuckyNumber) = drawnNumbers
       }
    }
 
-val sumOfUnmarkedForTheFirstWinningTicket = winningBoards
-   .map {
-      _.map {
-         _.map(Math.max(0, _))
-      }
-   }
-   .flatten
-   .flatten
+val sumOfUnmarkedForTheFirstWinningTicket = winningBoards.flatten.flatten
+   .map(Math.max(0, _))
    .sum
 
 firstLuckyNumber * sumOfUnmarkedForTheFirstWinningTicket
