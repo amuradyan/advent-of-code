@@ -4,6 +4,7 @@ val projectPath = new java.io.File(".").getCanonicalPath
 
 // Test data. The result should be:
 //  - 4512 for part one
+//  - 1924 for part two
 //
 // val gameData = List(
 //   "7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20,8,19,3,26,1",
@@ -33,7 +34,7 @@ val gameData = scala.io.Source
    .toList
 
 val drawnNumbers = gameData.head.split(",").map(_.toInt).toList
-val boards = gameData.tail
+val allBoards = gameData.tail
    .filter(_.nonEmpty)
    .map {
       _.split(" ")
@@ -47,29 +48,32 @@ val boards = gameData.tail
 type Board = List[List[Int]]
 type Boards = List[List[List[Int]]]
 type BoardRow = List[Int]
-type BoardColumn = List[Int]
 
-def updateTheBoards(boards: Boards, number: Int): Boards = boards.map(_.map(_.map(n => if (n == number) -1 else n)))
+def updateTheBoards(boards: Boards, number: Int): Boards = boards.map(updateTheBoard(_, number))
+
+def updateTheBoard(board: Board, number: Int): Board = board.map(updateTheRow(_, number))
+
+def updateTheRow(row: BoardRow, number: Int): BoardRow = row.map(n => if (n == number) -1 else n)
 
 def isWinningBoard(board: Board): Boolean = board.map(_.sum).contains(-5) || board.transpose.map(_.sum).contains(-5)
 
-val (winningBoards, luckyNumber) = drawnNumbers
-   .foldLeft((boards, -1)) { (acc, n) =>
+val (winningBoards, firstLuckyNumber) = drawnNumbers
+   .foldLeft((allBoards, -1)) { (acc, n) =>
       {
-         val (boards, luckyNumber) = acc
+         val (boards, firstLuckyNumber) = acc
 
-         if (luckyNumber < 0) {
+         if (firstLuckyNumber < 0) {
             val updatedBoards = updateTheBoards(boards, n)
 
             updatedBoards.filter(isWinningBoard) match {
                case b :: Nil => (b :: Nil, n)
-               case _        => (updatedBoards, luckyNumber)
+               case _        => (updatedBoards, firstLuckyNumber)
             }
-         } else (boards, luckyNumber)
+         } else (boards, firstLuckyNumber)
       }
    }
 
-val sumOfUnmarked = winningBoards
+val sumOfUnmarkedForTheFirstWinningTicket = winningBoards
    .map {
       _.map {
          _.map(Math.max(0, _))
@@ -79,4 +83,25 @@ val sumOfUnmarked = winningBoards
    .flatten
    .sum
 
-luckyNumber * sumOfUnmarked
+firstLuckyNumber * sumOfUnmarkedForTheFirstWinningTicket
+
+// Part 2 : Finding the last winning bingo ticket
+
+val (_, lastWinningBoard, lastLuckyNumber) = drawnNumbers
+   .foldLeft((allBoards, Nil: Board, -1)) { (acc, n) =>
+      {
+         val (boardsAtHand, currentWinningBoard, lastLuckyNumber) = acc
+         val updatedBoards = updateTheBoards(boardsAtHand, n)
+         val roundWinners = updatedBoards.filter(isWinningBoard)
+
+         if (roundWinners.nonEmpty) {
+            (updatedBoards.diff(roundWinners), roundWinners.head, n)
+         } else {
+            (updatedBoards, currentWinningBoard, lastLuckyNumber)
+         }
+      }
+   }
+
+val sumOfUnmarked = lastWinningBoard.flatten.filter(_ != -1).sum
+
+lastLuckyNumber * sumOfUnmarked
