@@ -1,8 +1,8 @@
 val projectPath = new java.io.File(".").getCanonicalPath
 
 // Test data. The result should be:
-//  - 26 and 5934 for 18 and 80 days respectively for part one
-//  -
+//  - 26 and 5934 for 18 and 80 days respectively
+//
 // Initial state: 3,4,3,1,2
 // After  1 day:  2,3,2,0,1
 // After  2 days: 1,2,1,6,0,8
@@ -50,6 +50,8 @@ def simulateSchool(state: List[Int], iterations: Int): List[Int] = {
 
 simulateSchool(schoolSample, 18).size
 
+// Part 1: Calculate the fish school size after 80 days
+
 Range(0, 80)
    .foldLeft(schoolSample) { (state, day) =>
       val newFish = state.count(_ == 0)
@@ -62,3 +64,26 @@ Range(0, 80)
          .appendedAll(List.fill(newFish)(8))
    }
    .size
+
+// Part 2: Calculate the fish school size after 256 days
+
+val initialFishCount = schoolSample.groupMapReduce(identity)(_ => 1L)(_ + _)
+
+Range(0, 256)
+   .foldLeft(initialFishCount) { (initialFishCount, day) =>
+      {
+         initialFishCount.foldLeft(Map[Int, Long]()) { (fishCount, fish) =>
+            {
+               val otherSixes = fishCount.getOrElse(6, 0L)
+
+               fish match {
+                  case (0, v) => fishCount ++ Map(6 -> { v + otherSixes }, 8 -> v)
+                  case (7, v) => fishCount ++ Map(6 -> { v + otherSixes })
+                  case (k, v) => fishCount + (k - 1 -> v)
+               }
+            }
+         }
+      }
+   }
+   .values
+   .sum
