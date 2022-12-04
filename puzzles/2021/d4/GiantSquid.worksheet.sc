@@ -29,7 +29,7 @@ val projectPath = new java.io.File(".").getCanonicalPath
 // ).toList
 
 val gameData = scala.io.Source
-   .fromFile(projectPath + "/puzzles/d4/input")
+   .fromFile(projectPath + "/puzzles/2021/d4/input")
    .getLines
    .toList
 

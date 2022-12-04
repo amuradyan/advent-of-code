@@ -26,7 +26,7 @@ val projectPath = new java.io.File(".").getCanonicalPath
 // val schoolSample = List(3, 4, 3, 1, 2)
 
 val schoolSample = scala.io.Source
-   .fromFile(projectPath + "/puzzles/d6/input")
+   .fromFile(projectPath + "/puzzles/2021/d6/input")
    .getLines
    .map {
       _.split(",").map(_.toInt).toList

@@ -7,7 +7,7 @@ val projectPath = new java.io.File(".").getCanonicalPath
 // val crabHorizontalPositions = List(16, 1, 2, 0, 4, 2, 7, 1, 2, 14)
 
 val crabHorizontalPositions = scala.io.Source
-   .fromFile(projectPath + "/puzzles/d7/input")
+   .fromFile(projectPath + "/puzzles/2021/d7/input")
    .getLines
    .map {
       _.split(",").map(_.toInt).toList

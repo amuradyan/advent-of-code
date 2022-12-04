@@ -1,7 +1,7 @@
 val projectPath = new java.io.File(".").getCanonicalPath
 
 scala.io.Source
-   .fromFile(projectPath + "/puzzles/d1/input")
+   .fromFile(projectPath + "/puzzles/2021/d1/input")
    .getLines
    .map(_.toInt)
    // If you comment the two lines below, you'll get the solution to part 1 of this puzzle

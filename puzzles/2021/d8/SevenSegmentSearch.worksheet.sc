@@ -24,7 +24,7 @@ val rawClues = List(
 )
 
 // val rawClues = scala.io.Source
-//    .fromFile(projectPath + "/puzzles/d8/input")
+//    .fromFile(projectPath + "/puzzles/2021/d8/input")
 //    .getLines
 //    .toList
 

@@ -18,7 +18,7 @@ val projectPath = new java.io.File(".").getCanonicalPath
 // )
 
 val radarReadings = scala.io.Source
-   .fromFile(projectPath + "/puzzles/d5/input")
+   .fromFile(projectPath + "/puzzles/2021/d5/input")
    .getLines
    .toList
 

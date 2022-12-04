@@ -3,7 +3,7 @@ val projectPath = new java.io.File(".").getCanonicalPath
 val rawHeightmap = List("2199943210", "3987894921", "9856789892", "8767896789", "9899965678")
 
 // val rawHeightmap = scala.io.Source
-//    .fromFile(projectPath + "/puzzles/d9/input")
+//    .fromFile(projectPath + "/puzzles/2021/d9/input")
 //    .getLines
 //    .toList
 

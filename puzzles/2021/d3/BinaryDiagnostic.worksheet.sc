@@ -3,7 +3,7 @@ val projectPath = new java.io.File(".").getCanonicalPath
 // Part 1 : Power Consumption
 
 scala.io.Source
-   .fromFile(projectPath + "/puzzles/d3/input")
+   .fromFile(projectPath + "/puzzles/2021/d3/input")
    .getLines
    .toList
    .map(_.getBytes.toList.map {
@@ -79,7 +79,7 @@ def calculateLifeSupportRating(telemetry: Telemetry): Int = {
 }
 
 val telemetry = scala.io.Source
-   .fromFile(projectPath + "/puzzles/d3/input")
+   .fromFile(projectPath + "/puzzles/2021/d3/input")
    .getLines
    .toList
    .map(_.getBytes.toList.map { _ - 48 })
