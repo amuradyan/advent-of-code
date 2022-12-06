@@ -12,7 +12,7 @@ object Shape:
     case "A" | "X" => Rock()
     case "B" | "Y" => Paper()
     case "C" | "Z" => Scissors()
-  
+
 case class Rock() extends Shape(1)
 case class Paper() extends Shape(2)
 case class Scissors() extends Shape(3)
@@ -43,7 +43,7 @@ rawGames
 // Part 2: A full game
 
 trait Outcome(value: Int)
-  
+
 object Outcome:
    def apply(input: String): Outcome = input match
      case "X" => Loss()

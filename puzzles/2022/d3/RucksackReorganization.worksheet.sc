@@ -27,7 +27,7 @@ rawItems
    .map(_.toSet)
    .sliding(3, 3)
    .toList
-   .map { 
+   .map {
       case List(compartmentOne, compartmentTwo, compartmentThree) =>
          compartmentOne intersect compartmentTwo intersect compartmentThree
       case _ => Set.empty
