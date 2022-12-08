@@ -1,5 +1,5 @@
 import mill._, scalalib._
 
 object puzzles extends ScalaModule {
-  def scalaVersion = "3.1.0"
+   def scalaVersion = "3.2.1"
 }
