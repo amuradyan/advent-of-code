@@ -17,7 +17,7 @@ val supplyStackMap = rawSections
          .toList
          .map(_.trim)
          .map(_.replace("[", "").replace("]", ""))
-         .zipWithIndex
+         .zip(LazyList from 1)
          .filter(_._1.nonEmpty)
    }
    .flatten
@@ -26,7 +26,6 @@ val supplyStackMap = rawSections
          case Some(stack) => acc + (index -> (crate :: stack))
          case None        => acc + (index -> List(crate))
    }
-   .map((k, v) => (k + 1, v))
 
 case class Move(from: Int, to: Int, count: Int)
 
