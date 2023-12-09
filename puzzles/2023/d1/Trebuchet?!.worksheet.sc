@@ -1,16 +1,16 @@
 import scala.util.Try
 val projectPath = new java.io.File(".").getCanonicalPath
 
+val calibrationDocument =
+  scala.io.Source
+  .fromFile(projectPath + "/puzzles/2023/d1/input")
+  .getLines
+  .toList
+
+// Part 1: Sum of calibration values
 val digits =
       ('0' to '9').toList
 
-val calibrationDocument =
-   scala.io.Source
-      .fromFile(projectPath + "/puzzles/2023/d1/input")
-      .getLines
-      .toList
-
-// Part 1: Sum of calibration values
 
 val sumOfAllCalibrationValue =
     calibrationDocument
@@ -39,21 +39,6 @@ object Six extends Digit("6", "six", 6)
 object Seven extends Digit("7", "seven", 7)
 object Eight extends Digit("8", "eight", 8)
 object Nine extends Digit("9", "nine", 9)
-
-object Digit:
-  def from(token: String): Option[Digit] =
-    token match
-      case "zero" | "0" => Some(Zero)
-      case "one" | "1" => Some(One)
-      case "two" | "2" => Some(Two)
-      case "three" | "3" => Some(Three)
-      case "four" | "4" => Some(Four)
-      case "five" | "5" => Some(Five)
-      case "six" | "6" => Some(Six)
-      case "seven" | "7" => Some(Seven)
-      case "eight" | "8" => Some(Eight)
-      case "nine" | "9" => Some(Nine)
-      case _ => None
 
 val richDigits =
   List( Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine )
